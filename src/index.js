@@ -8,13 +8,19 @@ import reportWebVitals from './reportWebVitals';
 import movies from './reducers/index';
 
 const store = createStore(movies);
-console.log(store);
-console.log('STATE', store.getState());
+// console.log(store);
+// console.log('BEFORE STATE', store.getState());
 
+// store.dispatch({
+//   type: 'ADD_MOVIES',
+//   movies: [{name: 'new movie'}]
+// });
+
+// console.log("AFTER STATE", store.getState())
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store = {store}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
