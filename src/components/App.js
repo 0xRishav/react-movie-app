@@ -4,17 +4,6 @@ import MovieCard from './MovieCard';
 import {data} from '../data';
 
 function App() {
-  // console.log(data);
-
-
-  // const newMovie = {
-  //   Title: 'The Avengers',
-  //   Poster: 'https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-  //   imdbRating: '8.0',
-  //   Plot:
-  //     "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."
-  // }
-
 
   return (
     <div className="App">
@@ -26,18 +15,10 @@ function App() {
         </div>
 
 
-
-        {/* <MovieCard movie = {newMovie}/>
-        <MovieCard movie = {newMovie}/>
-        <MovieCard movie = {newMovie}/> */}
-
-
-
-
         <div className="list">
 
-          {data.map((movie)=>{
-            return <MovieCard movie={movie}/>
+          {data.map((movie, index)=>{
+            return <MovieCard movie={movie} key={index}/>
           })}
 
         </div>

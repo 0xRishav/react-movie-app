@@ -130,6 +130,9 @@ body {
   cursor: pointer;
   background: #e1e1e1;
 }
+.tabs{
+  margin-bottom: 20px;
+}
 .movie-card {
   background: #fff;
   padding: 0;
