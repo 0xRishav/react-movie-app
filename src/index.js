@@ -6,8 +6,9 @@ import './index.css';
 import App from '../src/components/App';
 import reportWebVitals from './reportWebVitals';
 import movies from './reducers/index';
+import rootReducer from './reducers/index';
 
-const store = createStore(movies);
+const store = createStore(rootReducer);
 // console.log(store);
 // console.log('BEFORE STATE', store.getState());
 
