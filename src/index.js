@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -7,6 +7,7 @@ import App from '../src/components/App';
 import reportWebVitals from './reportWebVitals';
 import movies from './reducers/index';
 import rootReducer from './reducers/index';
+import { Provider } from 'react-redux';
 
 // const logger = function({ dispatch, getState }){
 //   return function(next){
@@ -36,20 +37,77 @@ const logger = ({ dispatch, getState }) => (next) => (action) => {
 // }
 /* , applyMiddleware(logger) */
 const store = createStore(rootReducer,applyMiddleware(logger,thunk));
-// console.log(store);
-// console.log('BEFORE STATE', store.getState());
+// export const StoreContext = createContext();
+// console.log('store context', StoreContext);
 
-// store.dispatch({
-//   type: 'ADD_MOVIES',
-//   movies: [{name: 'new movie'}]
-// });
+
+
+
+// export function connect(callback){
+//   return function(Component){
+//       class ConnectedComponent extends React.Component{
+//         constructor(props){
+//           super(props);
+//           this.unsubscribe = this.props.store.subscribe(()=>this.forceUpdate());
+//         }
+//         componentDidMount(){
+//           console.log('ConnectedComponent mounted');
+//         }
+//         componentWillUnmount(){
+//           this.unsubscribe();
+//         }
+//         render(){
+//           const {store} = this.props;            
+//           const state = store.getState();
+//           const stateToBePassedAsProps = callback(state);
+          
+//           return(
+//             <Component {...stateToBePassedAsProps} dispatch = {store.dispatch} getState = {store.getState}/>
+//           );
+
+//         }
+//       }
+//       class ConnectedComponentWrapper extends React.Component{
+//         componentDidMount(){
+//           console.log('ConnectedComponentWrapper mounted');
+//         }
+//         render(){
+//           return(
+//             <StoreContext.Consumer>
+//               {(store)=>{return <ConnectedComponent store = {store}/>}}
+//             </StoreContext.Consumer>
+//           );
+//         }
+//       }
+//       return ConnectedComponentWrapper;
+//   };
+// }
+
+store.dispatch({
+  type: 'ADD_MOVIES',
+  movies: [{name: 'new movie'}]
+});
 
 // console.log("AFTER STATE", store.getState())
+// class Provider extends React.Component{
+//   componentDidMount(){
+//     console.log('provider mounted');
+//   }
+//   render(){
+//     const {store} = this.props;
+//     console.log('this is store', store)
+//     return(
+//       <StoreContext.Provider value = {store}>
+//         {this.props.children}
+//       </StoreContext.Provider>
+//     );
+//   }
+// }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App store = {store}/>
-  </React.StrictMode>,
+  <Provider store = {store}>
+      <App />
+  </Provider>,
   document.getElementById('root')
 );
 
